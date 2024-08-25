@@ -60,12 +60,12 @@
 
 	<footer class="footer">
 				<h3>Quick Links</h3>
-				<!--  <ul>
+				<ul>
 					<li><a href="index.jsp">Home</a></li>
 					<li><a href="about.jsp">About</a></li>
 					<li><a href="contact.jsp">Contact</a></li>
 					<li><a href="terms.jsp">Terms & Conditions</a></li>
-				</ul>-->
+				</ul>
 			<div class="footer-column">
 				<h3>Contact Us</h3>
 				<p>Email: support@revshop.com</p>
