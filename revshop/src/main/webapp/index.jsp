@@ -71,7 +71,6 @@
             <ul style="list-style: none; padding: 0;">
                 <li><a href="index.jsp" style="color: #fff; text-decoration: none;" onmouseover="this.style.color='#7a7a76'" onmouseout="this.style.color='#fff'">Home</a></li>
                 <li><a href="about.jsp" style="color: #fff; text-decoration: none;" onmouseover="this.style.color='#7a7a76'" onmouseout="this.style.color='#fff'">About Us</a></li>
-                <li><a href="contact.jsp" style="color: #fff; text-decoration: none;" onmouseover="this.style.color='#7a7a76'" onmouseout="this.style.color='#fff'">Contact Us</a></li>
                 <li><a href="terms.jsp" style="color: #fff; text-decoration: none;" onmouseover="this.style.color='#7a7a76'" onmouseout="this.style.color='#fff'">Terms & Conditions</a></li>
                 <li><a href="privacy.jsp" style="color: #fff; text-decoration: none;" onmouseover="this.style.color='#7a7a76'" onmouseout="this.style.color='#fff'">Privacy Policy</a></li>
             </ul>

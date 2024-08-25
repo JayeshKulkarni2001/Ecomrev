@@ -87,10 +87,6 @@ body {
 						style="color: #fff; text-decoration: none;"
 						onmouseover="this.style.color='#7a7a76'"
 						onmouseout="this.style.color='#fff'">About Us</a></li>
-					<li><a href="contact.jsp"
-						style="color: #fff; text-decoration: none;"
-						onmouseover="this.style.color='#7a7a76'"
-						onmouseout="this.style.color='#fff'">Contact Us</a></li>
 					<li><a href="terms.jsp"
 						style="color: #fff; text-decoration: none;"
 						onmouseover="this.style.color='#7a7a76'"

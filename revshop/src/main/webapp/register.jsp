@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
 	<div class="login-container">
 		<form class="login-box" action="RegisterServlet" method="post">
 			<h2>Register</h2>
