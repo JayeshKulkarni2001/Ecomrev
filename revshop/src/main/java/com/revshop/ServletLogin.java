@@ -1,12 +1,12 @@
 package com.revshop;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,7 +22,7 @@ public class ServletLogin extends HttpServlet {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/revshop", "root", "password");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3030/revshop", "root", "root");
 
             String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -35,9 +35,10 @@ public class ServletLogin extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", rs.getString("name"));
                 session.setAttribute("role", rs.getString("role"));
-                response.sendRedirect("home.jsp");
+                System.out.println("login success");
+//                response.sendRedirect("home.jsp");
             } else {
-                response.sendRedirect("login.jsp?error=Invalid+email+or+password");
+//                response.sendRedirect("login.jsp?error=Invalid+email+or+password");
             }
 
             rs.close();
@@ -45,7 +46,7 @@ public class ServletLogin extends HttpServlet {
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("login.jsp?error=An+error+occurred");
+//            response.sendRedirect("login.jsp?error=An+error+occurred");
         }
     }
 }
