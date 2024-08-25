@@ -34,7 +34,7 @@
 		</p>
 	</section>
 
-	<section id="featured-products" style="color: #fff">
+	<section id="featured-products">
 		<h2>Featured Products</h2>
 		<div class="product-list">
 			<div class="product-item">
