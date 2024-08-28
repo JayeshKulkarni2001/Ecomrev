@@ -10,40 +10,31 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-//@WebServlet("/ServletRegister")
-public class ServletRegister extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-
+//@WebServlet("/DeleteProductServlet")
+public class DeleteProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String role = request.getParameter("role");
+        int id = Integer.parseInt(request.getParameter("id"));
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3030/revshop", "root", "root");
 
-            String sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
+            String sql = "DELETE FROM products WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, name);
-            stmt.setString(2, email);
-            stmt.setString(3, password);
-            stmt.setString(4, role);
+            stmt.setInt(1, id);
 
-            int rows = stmt.executeUpdate();
-
-            if (rows > 0) {
-                response.sendRedirect("login.jsp");
+            int rowsDeleted = stmt.executeUpdate();
+            if (rowsDeleted > 0) {
+                response.getWriter().println("Product deleted successfully!");
             } else {
-                response.sendRedirect("register.jsp?error=Registration+failed");
+                response.getWriter().println("Product not found.");
             }
 
             stmt.close();
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("register.jsp?error=An+error+occurred");
+            response.getWriter().println("Error occurred while deleting product.");
         }
     }
 }

@@ -1,6 +1,5 @@
-<%@ taglib uri="http://jakarta.apache.org/taglibs/standard" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +9,7 @@
 </head>
 <body>
 	<div class="login-container">
-		<form class="login-box" action="RegisterServlet" method="post">
+		<form class="login-box" action="ServletRegister" method="post">
 			<h2>Register</h2>
 			<div>
 				<label for="name">Name</label> <input type="text" id="name"
