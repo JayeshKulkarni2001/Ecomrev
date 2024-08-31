@@ -25,7 +25,7 @@ public class DeleteProductServlet extends HttpServlet {
 
             int rowsDeleted = stmt.executeUpdate();
             if (rowsDeleted > 0) {
-                response.getWriter().println("Product deleted successfully!");
+            	response.sendRedirect("deleteProduct.jsp?deleteSuccess=true");
             } else {
                 response.getWriter().println("Product not found.");
             }

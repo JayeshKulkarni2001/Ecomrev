@@ -3,13 +3,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Delete Product</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Deletion</title>
+    <script>
+        function showAlertAndRedirect() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var deleteSuccess = urlParams.get('deleteSuccess');
+            
+            if (deleteSuccess === 'true') {
+                alert('Product deleted successfully!');
+            } else {
+                alert('Product deletion failed.');
+            }
+            
+            // Redirect to SellerDashboardServlet
+            window.location.href = 'SellerDashboardServlet';
+        }
+
+        // Call the function when the page loads
+        window.onload = showAlertAndRedirect;
+    </script>
 </head>
 <body>
-    <h2>Delete Product</h2>
-    <form action="DeleteProductServlet" method="post">
-        Product ID: <input type="text" name="id" required><br>
-        <input type="submit" value="Delete Product">
-    </form>
+    <!-- Body is left empty as JavaScript handles the message and redirect -->
 </body>
 </html>

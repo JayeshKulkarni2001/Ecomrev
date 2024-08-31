@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.revshop.Product" %>
 <%@ page session="true" %>
 <%
     String username = (String) session.getAttribute("user");
@@ -9,67 +12,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RevShop - Seller Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="theme.css">
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+        header {
+            display: flex;
+            justify-content: space-between; /* Distribute space between items */
+            align-items: center; /* Center items vertically */
+            padding: 10px;
+            background-color: #000000; /* Example background color */
+        }
+        .header-title {
+            color: white; /* Example text color */
+        }
+        .logout-link {
+            color: white; /* Example link color */
+        }
+    </style>
+    <!-- Add Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <header>
-        <div class="header-title">RevShop</div>
-        <div class="user-info">
-            Welcome, <strong><%= username %></strong>!
-            <a href="logout.jsp" class="button">Logout</a>
-        </div>
+        <div class="header-title">&copy;RevShop</div>
+        <a href="index.jsp" class="btn btn-outline-light ml-2 logout-link" style="align-items: right;">Logout</a>
     </header>
+</head>
+<body style="background-color: black;">
+    
 
     <div class="dashboard">
-        <h1>Seller Dashboard</h1>
-        <h2>Hello, <%= username %>!</h2>
-        <p>Manage your products and view your sales here.</p>
+        <h4 style="color: white;">Hello, <%= username %>!</h4>
+        <p style="color: white;" align="center">Manage your products and view your sales here.</p>
         
         <section id="seller-products">
-            <h2>Your Products</h2>
-            <a href="addProduct.jsp" class="button">Add New Product</a>
+            <h2 style="color: white;" align="center">Your Products</h2>
+            <a href="addProduct.jsp" class="btn btn-outline-light ml-2 logout-link">Add New Product</a>
+            <!-- <a href="addProduct.jsp" style="color: white;" class="button">Add New Product</a> -->
             <div class="product-list">
-                <c:forEach var="product" items="${sellerProducts}">
+                 <%
+                    List<?> productsObj = (List<?>) session.getAttribute("sellerProducts");
+                    if (productsObj != null && productsObj instanceof List<?>) {
+                        @SuppressWarnings("unchecked")
+                        List<Product> sellerProducts = (List<Product>) productsObj;
+                        for (Product product : sellerProducts) {
+                %>
                     <div class="product-item">
-                        <img src="${product.imageUrl}" alt="${product.name}">
-                        <h3>${product.name}</h3>
-                        <p>₹${product.price}</p>
-                        <a href="editProduct.jsp?id=${product.id}" class="button">Edit</a>
-                        <a href="deleteProduct.jsp?id=${product.id}" class="button">Delete</a>
+                         <form action="SellerDashboardServlet" method="get">
+                            <img src="data:image/jpeg;base64,<%= product.getImageBase64() %>" alt="<%= product.getName() %>" style="max-width: 150px; max-height: 150px;">
+                            <h3 style="color: black;"><%= product.getName() %></h3>
+                            <p style="color: black;">₹<%= product.getPrice() %></p>
+                        </form>
+                        <form action="editProduct.jsp" method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="<%= product.getId() %>">
+                            <input type="submit" value="Edit" class="button">
+                        </form>
+                        <form action="DeleteProductServlet" method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="<%= product.getId() %>">
+                            <input type="submit" value="Delete" class="button" onclick="return confirm('Are you sure you want to delete this product?');">
+                        </form>
                     </div>
-                </c:forEach>
+                <%
+                        }
+                    } else {
+                %>
+                    <p>No products found.</p>
+                <%
+                    }
+                %>
             </div>
         </section>
     </div>
 
-    <footer style="background-color: #fff; color: #000; padding: 20px; text-align: center;">
-        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: 0 auto;">
-            <!-- About Section -->
-            <div style="flex: 1; min-width: 200px; margin: 10px;">
-                <h3 style="color: #000;">About RevShop</h3>
-                <p style="line-height: 1.6;">RevShop is a versatile e-commerce platform offering a wide range of products for buyers and sellers. Our mission is to provide a secure and user-friendly shopping experience.</p>
-            </div>
-            <!-- Quick Links Section -->
-            <div style="flex: 1; min-width: 200px; margin: 10px;">
-                <h3 style="color: #000;">Quick Links</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li><a href="index.jsp" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#7a7a76'" onmouseout="this.style.color='#000'">Home</a></li>
-                    <li><a href="about.jsp" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#7a7a76'" onmouseout="this.style.color='#000'">About Us</a></li>
-                    <li><a href="terms.jsp" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#7a7a76'" onmouseout="this.style.color='#000'">Terms & Conditions</a></li>
-                    <li><a href="privacy.jsp" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#7a7a76'" onmouseout="this.style.color='#000'">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <!-- Contact Section -->
-            <div style="flex: 1; min-width: 200px; margin: 10px;">
-                <h3 style="color: #000;">Contact Us</h3>
-                <p style="line-height: 1.6;">Email: support@revshop.com</p>
-                <p style="line-height: 1.6;">Phone: +123-456-7890</p>
-                <p style="line-height: 1.6;">Address: 123 RevShop Street, City, Country</p>
-            </div>
-        </div>
-        <div style="border-top: 1px solid #333; padding-top: 20px; margin-top: 20px;">
-            <p>&copy; 2024 RevShop. All Rights Reserved.</p>
-        </div>
-    </footer>
+    <jsp:include page="footer.html" />
 </body>
 </html>

@@ -12,7 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-//@WebServlet("/ServletLogin")
+@WebServlet("/ServletLogin")
 public class ServletLogin extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -38,10 +38,10 @@ public class ServletLogin extends HttpServlet {
 //                session.setAttribute("loggedinuser", rs.getString("name"));
                 System.out.println("login success");
                 if(rs.getString("role").equals("seller")) {
-                	response.sendRedirect("sellerDashboard.jsp");
+                	response.sendRedirect("./SellerDashboardServlet");
                 }
                 else {
-                response.sendRedirect("home.jsp");}
+                response.sendRedirect("./BuyerDashboardServlet");}
             } else {
                 response.sendRedirect("login.jsp?error=Invalid+email+or+password");
             }

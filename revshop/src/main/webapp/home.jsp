@@ -36,19 +36,19 @@
 				<img src="img/headphone.jpg" alt="Product 1">
 				<h3>Rev R1 Headphones</h3>
 				<p>₹1999.99</p>
-				<a href="productDetails.jsp?id=1" class="button">View Details</a>
+				<a href="productDetails.jsp?id=1" class="button1">View Details</a>
 			</div>
 			<div class="product-item">
 				<img src="img/wired.jpg" alt="Product 2">
 				<h3>Rev rem Wired</h3>
 				<p>₹299.99</p>
-				<a href="productDetails.jsp?id=2" class="button">View Details</a>
+				<a href="productDetails.jsp?id=2" class="button1">View Details</a>
 			</div>
 			<div class="product-item">
 				<img src="img/wireless.jpg" alt="Product 3">
 				<h3>Rev revo Wireless</h3>
 				<p>₹1399.99</p>
-				<a href="productDetails.jsp?id=3" class="button">View Details</a>
+				<a href="productDetails.jsp?id=3" class="button1">View Details</a>
 			</div>
         </div>
     </section>

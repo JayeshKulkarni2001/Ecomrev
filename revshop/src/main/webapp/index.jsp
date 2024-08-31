@@ -1,93 +1,141 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RevShop - Home</title>
-<link rel="stylesheet" href="styles.css">
-<!-- Link to your CSS file -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RevShop - Home</title>
+    
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Add Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        /* Custom styles to make the navbar pure black */
+        .navbar {
+            background-color: #000000; /* Pure black background */
+        }
+        .navbar-dark .navbar-nav .nav-link,
+        .navbar-dark .navbar-brand {
+            color: #ffffff; /* White text color for contrast */
+        }
+        .navbar-dark .navbar-nav .nav-link.active,
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: #dddddd; /* Light gray color on hover or active state */
+        }
+        .navbar-toggler-icon {
+            background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><path stroke="%23ffffff" stroke-width="2" d="M 5 7 L 25 7"/><path stroke="%23ffffff" stroke-width="2" d="M 5 15 L 25 15"/><path stroke="%23ffffff" stroke-width="2" d="M 5 23 L 25 23"/></svg>'); /* White hamburger icon */
+        }
+        .btn-outline-light {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        .btn-outline-light:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+    </style>
 </head>
-<body>
-	<header>
-		<div class="header-title">RevShop</div>
-		<div class="button-container">
-			<a href="login.jsp" class="button">Login</a> <a href="register.jsp"
-				class="button">Register</a>
-		</div>
-	</header>
-	<div class="hero">
-		<!-- <img src="hero-image.jpg" alt="Hero Image"> -->
-		<h1>Welcome to RevShop</h1>
-		<p>Your one-stop shop for all your needs.</p>
-	</div>
 
-	<section id="intro">
-		<h2>Your One-Stop Online Shop</h2>
-		<p>Discover a wide variety of products, from electronics to
-			fashion. Shop with confidence and enjoy fast shipping and secure
-			payment options.</p>
-		<p>
-			Not a member yet? <a href="register.jsp">Register here</a> to start
-			shopping!
-		</p>
-	</section>
-
-	<section id="featured-products">
-		<h2>Featured Products</h2>
-		<div class="product-list">
-			<div class="product-item">
-				<img src="img/headphone.jpg" alt="Product 1">
-				<h3>Rev R1 Headphones</h3>
-				<p>₹1999.99</p>
-				<a href="productDetails.jsp?id=1" class="button">View Details</a>
-			</div>
-			<div class="product-item">
-				<img src="img/wired.jpg" alt="Product 2">
-				<h3>Rev rem Wired</h3>
-				<p>₹299.99</p>
-				<a href="productDetails.jsp?id=2" class="button">View Details</a>
-			</div>
-			<div class="product-item">
-				<img src="img/wireless.jpg" alt="Product 3">
-				<h3>Rev revo Wireless</h3>
-				<p>₹1399.99</p>
-				<a href="productDetails.jsp?id=3" class="button">View Details</a>
-			</div>
-		</div>
-	</section>
-	
-	<footer style="background-color: #fff; color: #000; padding: 20px; text-align: center;">
-    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: 0 auto;">
-        <!-- About Section -->
-        <div style="flex: 1; min-width: 200px; margin: 10px;">
-            <h3 style="color: #000;">About RevShop</h3>
-            <p style="line-height: 1.6;">RevShop is a versatile e-commerce platform offering a wide range of products for buyers and sellers. Our mission is to provide a secure and user-friendly shopping experience.</p>
-        </div>
-        <!-- Quick Links Section -->
-        <div style="flex: 1; min-width: 200px; margin: 10px;">
-            <h3 style="color: #000;">Quick Links</h3>
-            <ul style="list-style: none; padding: 0;">
-                <li><a href="index.jsp" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#7a7a76'" onmouseout="this.style.color='#000'">Home</a></li>
-                <li><a href="about.jsp" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#7a7a76'" onmouseout="this.style.color='#000'">About Us</a></li>
-                <li><a href="terms.jsp" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#7a7a76'" onmouseout="this.style.color='#000'">Terms & Conditions</a></li>
-                <li><a href="privacy.jsp" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#7a7a76'" onmouseout="this.style.color='#000'">Privacy Policy</a></li>
+<body style="background-color: black;">
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">RevShop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <!-- Add other nav items here if needed -->
             </ul>
+            <!-- Form for search and buttons -->
+            <form class="form-inline my-2 my-lg-0 ml-auto">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <a class="btn btn-outline-light ml-2">Search</a>
+            </form>
+            <a href="login.jsp" class="btn btn-outline-light ml-2">Login</a>
+            <a href="register.jsp" class="btn btn-outline-light ml-2">Register</a>
         </div>
-        <!-- Contact Section -->
-        <div style="flex: 1; min-width: 200px; margin: 10px;">
-            <h3 style="color: #000;">Contact Us</h3>
-            <p style="line-height: 1.6;">Email: support@revshop.com</p>
-            <p style="line-height: 1.6;">Phone: +123-456-7890</p>
-            <p style="line-height: 1.6;">Address: 123 RevShop Street, City, Country</p>
+    </nav>
+<h1></h1>
+<h2></h2>
+    <section id="carousel">
+        <div id="productCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#productCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#productCarousel" data-slide-to="1"></li>
+                <li data-target="#productCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/rtx.jpg" class="d-block w-100" alt="Rev R1 Headphones">
+                    <div class="carousel-caption d-none d-md-block">
+                        <!-- Caption for the first slide -->
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/msi.jpg" class="d-block w-100" alt="Rev rem Wired">
+                    <div class="carousel-caption d-none d-md-block">
+                        <!-- Caption for the second slide -->
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/msi2.jpg" class="d-block w-100" alt="Rev revo Wireless">
+                    <div class="carousel-caption d-none d-md-block">
+                        <!-- Caption for the third slide -->
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-    </div>
-    <div style="border-top: 1px solid #333; padding-top: 20px; margin-top: 20px;">
-        <p>&copy; 2024 RevShop. All Rights Reserved.</p>
-    </div>
-</footer>
-	
+    </section>
 
+    <section id="featured-products">
+        <h2 style="align-content: center;color: white;">Featured Products</h2>
+        <div class="product-list">
+            <div class="product-item">
+                <img src="img/headphone.jpg" alt="Product 1">
+                <h3>Rev R1 Headphones</h3>
+                <p>₹1999.99</p>
+                <a href="productDetails.html?id=1" style="background-color: black;border-color:black;" class="btn btn-primary">View Details</a>
+            </div>
+            <div class="product-item">
+                <img src="img/wired.jpg" alt="Product 2">
+                <h3>Rev rem Wired</h3>
+                <p>₹299.99</p>
+                <a href="productDetails.html?id=2" style="background-color: black;border-color:black;" class="btn btn-primary">View Details</a>
+            </div>
+            <div class="product-item">
+                <img src="img/wireless.jpg" alt="Product 3">
+                <h3>Rev revo Wireless</h3>
+                <p>₹1399.99</p>
+                <a href="productDetails.html?id=3" style="background-color: black;border-color:black;" class="btn btn-primary">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <jsp:include page="footer.html" />
+        <p>&copy; 2024 RevShop. All rights reserved.</p>
+    </footer>
 </body>
+
 </html>

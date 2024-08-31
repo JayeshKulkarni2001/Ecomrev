@@ -15,9 +15,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-//@WebServlet("/sellerDashboard")
-public class SellerDashboardServlet extends HttpServlet {
+//@WebServlet("/buyerDashboard")
+public class BuyerDashboardServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,9 +26,7 @@ public class SellerDashboardServlet extends HttpServlet {
             return;
         }
         
-        String username = (String) request.getSession().getAttribute("user");
-        System.out.println("username: "+username);
-        List<Product> sellerProducts = new ArrayList<>();
+        List<Product> allProducts = new ArrayList<>();
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -41,10 +38,9 @@ public class SellerDashboardServlet extends HttpServlet {
             // Establish a connection
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3030/revshop", "root", "root");
 
-            // Prepare SQL query
-            String sql = "SELECT * FROM products WHERE addby = ?";
+            // Prepare SQL query to retrieve all products
+            String sql = "SELECT * FROM products";
             statement = connection.prepareStatement(sql);
-            statement.setString(1, username);
 
             // Execute query
             resultSet = statement.executeQuery();
@@ -60,7 +56,7 @@ public class SellerDashboardServlet extends HttpServlet {
                 product.setCategory(resultSet.getString("category"));
                 product.setImageUrl(resultSet.getBytes("image_url")); // Assuming image_url is a BLOB or BYTE[]
 
-                sellerProducts.add(product);
+                allProducts.add(product);
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace(); // Log the exception
@@ -77,11 +73,10 @@ public class SellerDashboardServlet extends HttpServlet {
             }
         }
 
-        // Set data as request attribute
-        request.setAttribute("sellerProducts", sellerProducts);
-        session.setAttribute("sellerProducts", sellerProducts);
-        // Forward to JSP
-        request.getRequestDispatcher("sellerDashboard.jsp").forward(request, response);
-    }
+        // Set data as session attribute
+        session.setAttribute("allProducts", allProducts);
 
+        // Forward to JSP
+        request.getRequestDispatcher("buyerDashboard.jsp").forward(request, response);
+    }
 }

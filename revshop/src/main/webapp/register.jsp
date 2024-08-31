@@ -32,7 +32,7 @@
 				</select>
 			</div>
 			<div>
-				<input type="submit" value="Register" class="button">
+				<input type="submit" value="Register" class="button1">
 			</div>
 			<p class="signup-link">
 			Already have an account? <a href="login.jsp">Login here</a>
