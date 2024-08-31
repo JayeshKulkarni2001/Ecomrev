@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.revshop.Product" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -108,28 +110,15 @@
         </div>
     </section>
 
-    <section id="featured-products">
-        <h2 style="align-content: center;color: white;">Featured Products</h2>
-        <div class="product-list">
-            <div class="product-item">
-                <img src="img/headphone.jpg" alt="Product 1">
-                <h3>Rev R1 Headphones</h3>
-                <p>₹1999.99</p>
-                <a href="productDetails.html?id=1" style="background-color: black;border-color:black;" class="btn btn-primary">View Details</a>
-            </div>
-            <div class="product-item">
-                <img src="img/wired.jpg" alt="Product 2">
-                <h3>Rev rem Wired</h3>
-                <p>₹299.99</p>
-                <a href="productDetails.html?id=2" style="background-color: black;border-color:black;" class="btn btn-primary">View Details</a>
-            </div>
-            <div class="product-item">
-                <img src="img/wireless.jpg" alt="Product 3">
-                <h3>Rev revo Wireless</h3>
-                <p>₹1399.99</p>
-                <a href="productDetails.html?id=3" style="background-color: black;border-color:black;" class="btn btn-primary">View Details</a>
-            </div>
-        </div>
+    <section id="intro">
+        <h2>Your One-Stop Online Shop</h2>
+        <p>Discover a wide variety of products, from electronics to
+			fashion. Shop with confidence and enjoy fast shipping and secure
+			payment options.</p>
+		<p>
+			Not a member yet?
+        <a href="./ProductDetailsServlet" style="background-color: black; border-color: black;size: 20px;" class="btn btn-outline-light ml-2">Start Shopping</a>
+       </p>
     </section>
 
     <footer>

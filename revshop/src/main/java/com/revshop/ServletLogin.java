@@ -35,6 +35,7 @@ public class ServletLogin extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", rs.getString("name"));
                 session.setAttribute("role", rs.getString("role"));
+                session.setAttribute("id", rs.getInt("id"));
 //                session.setAttribute("loggedinuser", rs.getString("name"));
                 System.out.println("login success");
                 if(rs.getString("role").equals("seller")) {

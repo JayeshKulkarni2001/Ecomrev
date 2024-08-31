@@ -136,6 +136,33 @@
                             <input type="hidden" name="productId" value="<%= product.getId() %>">
                             <input type="submit" value="Add to Cart" class="button">
                         </form>
+                        <button type="button" style="background-color:black;" class="btn btn-outline-light ml-2" data-toggle="modal" data-target="#productModal<%= product.getId() %>">
+                        View Details
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="productModal<%= product.getId() %>" tabindex="-1" role="dialog" aria-labelledby="productModalLabel<%= product.getId() %>" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="productModalLabel<%= product.getId() %>"><%= product.getName() %></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="data:image/jpeg;base64,<%= product.getImageBase64() %>" alt="<%= product.getName() %>" style="max-width: 100%; height: auto;">
+                                    <p><strong>Description:</strong> <%= product.getDescription() %></p>
+                                    <p><strong>Price:</strong> ₹<%= product.getPrice() %></p>
+                                    <p><strong>Category:</strong> <%= product.getCategory() %></p>
+                                    <p><strong>Quantity:</strong> <%= product.getQuantity() %></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 <%
                             }
