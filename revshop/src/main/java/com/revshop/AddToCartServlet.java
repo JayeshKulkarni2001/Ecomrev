@@ -23,7 +23,7 @@ public class AddToCartServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String productId = request.getParameter("productId");
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         int username = (int) session.getAttribute("id");
 
         if (username == 0) {

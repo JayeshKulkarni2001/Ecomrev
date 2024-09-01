@@ -19,7 +19,7 @@ CREATE TABLE products (
     addby VARCHAR(255) NOT NULL
 );
 -- use revshop;
-select id,name,description,price,quantity,category, convert(image_url using utf8),addby from products;
+select id,name,description,price,quantity,category,  image_url,addby from products;
 
 CREATE TABLE Cart (
     cart_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -37,4 +37,35 @@ ADD CONSTRAINT unique_cart_item UNIQUE (user_id, product_id);
 select * from Cart;
 SELECT p.id, p.name, p.price, c.quantity FROM Cart c JOIN products p ON c.product_id = p.id WHERE c.user_id = 2;
 
+CREATE TABLE shipping_info (
+    id INT AUTO_INCREMENT PRIMARY KEY, -- or SERIAL in PostgreSQL
+    full_name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    state VARCHAR(50) NOT NULL,
+    zip_code VARCHAR(20) NOT NULL,
+    country VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE shipping_info
+ADD user_id INT,  -- Add the user_id column
+ADD CONSTRAINT fk_user
+FOREIGN KEY (user_id) REFERENCES users(id);
+
+ALTER TABLE shipping_info
+ADD CONSTRAINT unique_id_user_id UNIQUE (id, user_id);
+
+ALTER TABLE shipping_info
+ADD COLUMN prod_id INT,
+ADD CONSTRAINT fk_product
+FOREIGN KEY (prod_id) REFERENCES products(id);
+
+ALTER TABLE shipping_info
+ADD CONSTRAINT unique_prod_id UNIQUE (prod_id);
+
+ALTER TABLE shipping_info
+ADD COLUMN prod_name VARCHAR(255),
+ADD COLUMN prod_price DECIMAL(10, 2),
+ADD COLUMN quantity INT
 

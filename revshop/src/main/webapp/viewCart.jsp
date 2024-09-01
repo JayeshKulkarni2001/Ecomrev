@@ -1,21 +1,60 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.sql.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Cart</title>
-    <link rel="stylesheet" href="theme.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RevShop - Buyer Dashboard</title>
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #000000;
+}
+
+.header-title {
+    color: white;
+}
+
+.logout-link {
+    color: white;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+</style>
+<!-- Add Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<header>
+    <div class="header-title">&copy;RevShop</div>
+    <a href="buyerDashboard.jsp"
+        class="btn btn-outline-light ml-2 logout-link"
+        style="align-items: right;">Back to Products</a> <a href="login.jsp"
+        class="btn btn-outline-light ml-2 logout-link"
+        style="align-items: right;">Logout</a>
+</header>
 </head>
-<body>
-    <header>
-        <h1>Shopping Cart</h1>
-        <a href="buyerDashboard.jsp">Back to Products</a>
-    </header>
-    <div class="container">
+<body style="background-color: black;">
+    <div class="content">
         <h2>Your Cart</h2>
         <table class="table">
             <thead>
@@ -25,7 +64,8 @@
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total</th>
-                    <th>Action</th> <!-- New column for action -->
+                    <th>Action</th>
+                    <th>Checkout</th> <!-- New column for checkout -->
                 </tr>
             </thead>
             <tbody>
@@ -63,6 +103,13 @@
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
+                    <td>
+                        <!-- Button for checkout that redirects to payment.jsp -->
+                        <form action="payment.jsp" method="post">
+                            <input type="hidden" name="totalAmount" value="<%= total %>">
+                            <button type="submit" class="btn btn-success">Checkout</button>
+                        </form>
+                    </td>
                 </tr>
                 <%
                                 }
@@ -74,7 +121,7 @@
                     } else {
                 %>
                 <tr>
-                    <td colspan="6">You must be logged in to view your cart.</td>
+                    <td colspan="7">You must be logged in to view your cart.</td>
                 </tr>
                 <%
                     }
