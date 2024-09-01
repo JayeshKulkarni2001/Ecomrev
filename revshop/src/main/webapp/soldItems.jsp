@@ -41,72 +41,52 @@
 </head>
 <header>
     <div class="header-title">&copy;RevShop</div>
-    <a href="BuyerDashboardServlet"
+    <a href="SellerDashboardServlet"
         class="btn btn-outline-light ml-2 logout-link"
         style="align-items: right;">Back to Dashboard</a>
 </header>
 <body style="background-color: black;">
     <div class="content">
-        <h2 class="text-center mb-4" style="color: black;">Order History</h2>
+        <h2 class="text-center mb-4" style="color: black;">Sold Items</h2>
 
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Order ID</th>
-                    <th>Full Name</th>
-                    <th>Address</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>ZIP Code</th>
-                    <th>Country</th>
-                    <th>Product ID</th>
+             
                     <th>Product Name</th>
+                    <th>Description</th>
                     <th>Product Price</th>
                     <th>Quantity</th>
-                    <th>Order Date</th>
+                    <th>Category</th>
                 </tr>
             </thead>
             <tbody>
                 <% 
                     // Retrieve order history from request attribute
-                    ResultSet rs = (ResultSet) request.getAttribute("orderHistory");
+                    ResultSet rs = (ResultSet) request.getAttribute("soldHistory");
                     
                     if (rs != null) {
                         while (rs.next()) {
-                            int orderId = rs.getInt("id");
-                            String fullName = rs.getString("full_name");
-                            String address = rs.getString("address");
-                            String city = rs.getString("city");
-                            String state = rs.getString("state");
-                            String zipCode = rs.getString("zip_code");
-                            String country = rs.getString("country");
-                            int prodId = rs.getInt("prod_id");
-                            String prodName = rs.getString("prod_name");
+                            String prodName = rs.getString("name");
+                            String prodDescription = rs.getString("description");
                             double prodPrice = rs.getDouble("prod_price");
                             int quantity = rs.getInt("quantity");
-                            Timestamp createdAt = rs.getTimestamp("created_at");
+                            String category = rs.getString("category");
                             
                             %>
                             <tr>
-                                <td><%= orderId %></td>
-                                <td><%= fullName %></td>
-                                <td><%= address %></td>
-                                <td><%= city %></td>
-                                <td><%= state %></td>
-                                <td><%= zipCode %></td>
-                                <td><%= country %></td>
-                                <td><%= prodId %></td>
                                 <td><%= prodName %></td>
+                                <td><%= prodDescription %>
                                 <td><%= prodPrice %></td>
                                 <td><%= quantity %></td>
-                                <td><%= createdAt %></td>
+                                <td><%= category %></td>
                             </tr>
                             <% 
                         }
                     } else {
                         %>
                         <tr>
-                            <td colspan="12" class="text-center">No orders found.</td>
+                            <td colspan="12" class="text-center">No products sold.</td>
                         </tr>
                         <% 
                     }

@@ -48,7 +48,8 @@ header {
     <div class="header-title">&copy;RevShop</div>
     <a href="buyerDashboard.jsp"
         class="btn btn-outline-light ml-2 logout-link"
-        style="align-items: right;">Back to Products</a> <a href="login.jsp"
+        style="align-items: right;">Back to Products</a> 
+        <a href="LogoutServlet"
         class="btn btn-outline-light ml-2 logout-link"
         style="align-items: right;">Logout</a>
 </header>

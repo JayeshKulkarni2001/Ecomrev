@@ -62,10 +62,6 @@
                 <!-- Add other nav items here if needed -->
             </ul>
             <!-- Form for search and buttons -->
-            <form class="form-inline my-2 my-lg-0 ml-auto">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <a class="btn btn-outline-light ml-2">Search</a>
-            </form>
             <a href="login.jsp" class="btn btn-outline-light ml-2">Login</a>
             <a href="register.jsp" class="btn btn-outline-light ml-2">Register</a>
         </div>

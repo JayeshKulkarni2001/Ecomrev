@@ -36,7 +36,8 @@
     
     <header>
         <div class="header-title">&copy;RevShop</div>
-        <a href="index.jsp" class="btn btn-outline-light ml-2 logout-link" style="align-items: right;">Logout</a>
+        <a href="SoldItemsServlet" class="btn btn-outline-light ml-2 logout-link" style="align-items: right;">Sold Items</a>
+        <a href="LogoutServlet" class="btn btn-outline-light ml-2 logout-link" style="align-items: right;">Logout</a>
     </header>
 </head>
 <body style="background-color: black;">

@@ -39,8 +39,8 @@
     <header>
         <div class="header-title">&copy;RevShop</div>
         <a href="viewCart.jsp" class="btn btn-outline-light ml-2 logout-link" style="align-items: right;">My Cart</a>
-        <a href="orderHistory.jsp" class="btn btn-outline-light ml-2 logout-link" style="align-items: right;">My Orders</a>
-        <a href="login.jsp" class="btn btn-outline-light ml-2 logout-link" style="align-items: right;">Logout</a>
+        <a href="./OrderHistoryServlet" class="btn btn-outline-light ml-2 logout-link" style="align-items: right;">My Orders</a>
+        <a href="LogoutServlet" class="btn btn-outline-light ml-2 logout-link" style="align-items: right;">Logout</a>
         
     </header>
 </head>
