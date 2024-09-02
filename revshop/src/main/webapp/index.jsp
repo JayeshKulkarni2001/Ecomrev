@@ -62,8 +62,8 @@
                 <!-- Add other nav items here if needed -->
             </ul>
             <!-- Form for search and buttons -->
-            <a href="login.jsp" class="btn btn-outline-light ml-2">Login</a>
-            <a href="register.jsp" class="btn btn-outline-light ml-2">Register</a>
+            <a href="login.jsp" id="login" class="btn btn-outline-light ml-2">Login</a>
+            <a href="register.jsp" id="register" class="btn btn-outline-light ml-2">Register</a>
         </div>
     </nav>
 <h1></h1>

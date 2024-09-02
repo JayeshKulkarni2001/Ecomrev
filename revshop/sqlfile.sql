@@ -67,5 +67,24 @@ ADD CONSTRAINT unique_prod_id UNIQUE (prod_id);
 ALTER TABLE shipping_info
 ADD COLUMN prod_name VARCHAR(255),
 ADD COLUMN prod_price DECIMAL(10, 2),
-ADD COLUMN quantity INT
+ADD COLUMN quantity INT;
+
+-- ALTER TABLE shipping_info
+-- DROP foreign key fk_product;
+
+-- ALTER TABLE shipping_info
+-- DROP Index unique_prod_id;
+
+-- ALTER TABLE shipping_info
+-- ADD CONSTRAINT fk_product
+-- FOREIGN KEY (prod_id) REFERENCES products(id);
+
+CREATE TABLE wishlist (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
 

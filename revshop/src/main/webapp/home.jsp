@@ -36,6 +36,9 @@
         .navbar-toggler-icon {
             background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><path stroke="%23ffffff" stroke-width="2" d="M 5 7 L 25 7"/><path stroke="%23ffffff" stroke-width="2" d="M 5 15 L 25 15"/><path stroke="%23ffffff" stroke-width="2" d="M 5 23 L 25 23"/></svg>'); /* White hamburger icon */
         }
+        .btn {
+        width: auto;
+        }
         .btn-outline-light {
             color: #ffffff;
             border-color: #ffffff;
@@ -44,6 +47,7 @@
             background-color: #ffffff;
             color: #000000;
         }
+        
     </style>
 </head>
 
@@ -62,7 +66,13 @@
                 <!-- Add other nav items here if needed -->
             </ul>
             <!-- Form for search and buttons -->
-            <a href="login.jsp" class="btn btn-outline-light ml-2">Login</a>
+			<form class="form-inline my-2 my-lg-0 ml-auto"
+				action="ProductDetailsServlet" method="GET">
+				<input class="form-control mr-sm-2" type="search" name="query"
+					placeholder="Search products" aria-label="Search">
+				<button class="btn btn-outline-light ml-2" style="width: 50px;" type="submit">Search</button>			
+				</form>
+			<a href="login.jsp" class="btn btn-outline-light ml-2">Login</a>
             <a href="register.jsp" class="btn btn-outline-light ml-2">Register</a>
         </div>
     </nav>

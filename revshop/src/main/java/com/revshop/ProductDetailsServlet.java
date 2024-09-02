@@ -22,16 +22,42 @@ public class ProductDetailsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         List<Product> productList = new ArrayList<>();
-        Connection connection = null; // You need to implement your DB connection logic
+        Connection connection = null;
+
+        String query = request.getParameter("query");
+        String sql;
 
         try {
-        	// Load JDBC driver (optional for newer versions)
             Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Establish a connection
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3030/revshop", "root", "root");
 
-                String sql = "SELECT * FROM products";
+            if (query != null && !query.trim().isEmpty()) {
+                sql = "SELECT * FROM products WHERE name LIKE ? OR description LIKE ? OR category LIKE ?";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                String searchPattern = "%" + query + "%";
+                statement.setString(1, searchPattern);
+                statement.setString(2, searchPattern);
+                statement.setString(3, searchPattern);
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    Product product = new Product();
+                    product.setId(resultSet.getInt("id"));
+                    product.setName(resultSet.getString("name"));
+                    product.setDescription(resultSet.getString("description"));
+                    product.setPrice(resultSet.getBigDecimal("price"));
+                    product.setQuantity(resultSet.getInt("quantity"));
+                    product.setCategory(resultSet.getString("category"));
+                    product.setImageUrl(resultSet.getBytes("image_url"));
+
+                    productList.add(product);
+                }
+
+                resultSet.close();
+                statement.close();
+            } else {
+                // If no query is provided, retrieve all products
+                sql = "SELECT * FROM products";
                 PreparedStatement statement = connection.prepareStatement(sql);
                 ResultSet resultSet = statement.executeQuery();
 
@@ -43,31 +69,27 @@ public class ProductDetailsServlet extends HttpServlet {
                     product.setPrice(resultSet.getBigDecimal("price"));
                     product.setQuantity(resultSet.getInt("quantity"));
                     product.setCategory(resultSet.getString("category"));
-                    product.setImageUrl(resultSet.getBytes("image_url")); // Assuming image_url is a BLOB or BYTE[]
+                    product.setImageUrl(resultSet.getBytes("image_url"));
 
                     productList.add(product);
                 }
 
                 resultSet.close();
                 statement.close();
-            } catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
-                // Handle exceptions (e.g., logging, setting error messages)
-            } finally {
-                // Close the connection
-                if (connection != null) {
-                    try {
-                        connection.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             }
+        }
 
-            // Set the productList as a request attribute
-            request.setAttribute("productList", productList);
-
-            // Forward the request to the JSP page
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+        request.setAttribute("productList", productList);
+        request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 }

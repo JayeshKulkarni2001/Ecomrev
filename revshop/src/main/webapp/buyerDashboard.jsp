@@ -39,6 +39,7 @@
     <header>
         <div class="header-title">&copy;RevShop</div>
         <a href="viewCart.jsp" class="btn btn-outline-light ml-2 logout-link" style="align-items: right;">My Cart</a>
+        <a href="wishlist.jsp" class="btn btn-outline-light ml-2 logout-link" style="align-items: right;">Wish List</a>
         <a href="./OrderHistoryServlet" class="btn btn-outline-light ml-2 logout-link" style="align-items: right;">My Orders</a>
         <a href="LogoutServlet" class="btn btn-outline-light ml-2 logout-link" style="align-items: right;">Logout</a>
         
@@ -139,7 +140,12 @@
                             <input type="hidden" name="productId" value="<%= product.getId() %>">
                             <input type="submit" value="Add to Cart" class="button">
                         </form>
-                        <button type="button" style="background-color:black;" class="btn btn-outline-light ml-2" data-toggle="modal" data-target="#productModal<%= product.getId() %>">
+					<form action="AddToWishlistServlet" method="post">
+						<input type="hidden" name="productId" value="<%= product.getId() %>">
+						<button type="submit" class="button">Add to
+							Wishlist</button>
+					</form>
+					<button type="button" style="background-color:black;" class="btn btn-outline-light ml-2" data-toggle="modal" data-target="#productModal<%= product.getId() %>">
                         View Details
                     </button>
                     

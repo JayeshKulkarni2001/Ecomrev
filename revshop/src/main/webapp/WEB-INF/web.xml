@@ -140,4 +140,24 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/LogoutServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddToWishlistServlet</display-name>
+    <servlet-name>AddToWishlistServlet</servlet-name>
+    <servlet-class>com.revshop.AddToWishlistServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddToWishlistServlet</servlet-name>
+    <url-pattern>/AddToWishlistServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteFromWishlistServlet</display-name>
+    <servlet-name>DeleteFromWishlistServlet</servlet-name>
+    <servlet-class>com.revshop.DeleteFromWishlistServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteFromWishlistServlet</servlet-name>
+    <url-pattern>/DeleteFromWishlistServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
